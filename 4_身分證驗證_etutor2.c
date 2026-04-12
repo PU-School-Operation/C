@@ -63,23 +63,27 @@ int letterValue(char ch)
     }
 }
 
-int main() {
+int main()
+{
     char id[100];
     int len, i, sum, code;
 
-    if (fgets(id, sizeof(id), stdin) == NULL) {
+    if (fgets(id, sizeof(id), stdin) == NULL)
+    {
         return 0;
     }
 
     id[strcspn(id, "\n")] = '\0';
     len = strlen(id);
 
-    if (len != 10 || !isalpha((unsigned char)id[0])) {
+    if (len != 10 || !isalpha((unsigned char)id[0]))
+    {
         printf("Invalid ID\n");
         return 0;
     }
 
-    for (i = 1; i < 10; i++) {
+    for (i = 1; i < 10; i++)
+    {
         if (!isdigit((unsigned char)id[i]))
         {
             printf("Invalid ID\n");
@@ -88,21 +92,27 @@ int main() {
     }
 
     code = letterValue(id[0]);
-    if (code == -1) {
+    if (code == -1)
+    {
         printf("Invalid ID\n");
         return 0;
     }
 
     sum = code / 10 + (code % 10) * 9;
 
-    for (i = 1; i < 10; i++) {
-        sum += (id[i] - '0') * (10 - i);
+    for (i = 1; i < 9; i++)
+    {
+        sum += (id[i] - '0') * (9 - i);
     }
 
-    if (sum % 10 == 0) {
+    sum += (id[9] - '0');
+
+    if (sum % 10 == 0)
+    {
         printf("Valid ID\n");
     }
-    else {
+    else
+    {
         printf("Invalid ID\n");
     }
 
